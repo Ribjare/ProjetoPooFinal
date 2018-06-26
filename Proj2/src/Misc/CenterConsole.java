@@ -83,13 +83,13 @@ public class CenterConsole implements WiFi, Serializable{
             Random rand = new Random();
             int i = rand.nextInt((2 - 1) + 1) + 1;
             if (i == 1) {
-                for (DoorSensor d : alarmModule.getDoorSensor()) {
+                alarmModule.getDoorSensor().forEach((d) -> {
                     d.act();
-                }
+                });
             } else {
-                for (MotionSensor m : alarmModule.getMotionSensor()) {
+                alarmModule.getMotionSensor().forEach((m) -> {
                     m.act();
-                }
+                });
             }
         } else {
             System.out.println("Wifi is disconnected.\n");
@@ -114,24 +114,25 @@ public class CenterConsole implements WiFi, Serializable{
             switch (i) {
                 case 1:
                     if (j == 1) {
-                        for (MotionSensor m : alarmModule.getMotionSensor()) {
-
+                        alarmModule.getMotionSensor().stream().map((m) -> {
                             m.setActive(true);
-                            m.act();
-                        }
+                    return m;
+                }).forEachOrdered((m) -> {
+                    m.act();
+                });
                     } else {
-                        for (DoorSensor d : alarmModule.getDoorSensor()) {
+                        alarmModule.getDoorSensor().forEach((d) -> {
                             d.act();
-                        }
+                });
                     }
                     break;
                 case 2:
-                    for (MotionSensor m : alarmModule.getMotionSensor()) {
+                    alarmModule.getMotionSensor().forEach((m) -> {
                         m.setActive(false);
-                    }
-                    for (DoorSensor d : alarmModule.getDoorSensor()) {
+            });
+                    alarmModule.getDoorSensor().forEach((d) -> {
                         d.act();
-                    }
+            });
                     break;
                 default:
                     System.out.println("Choice not possible.\n");

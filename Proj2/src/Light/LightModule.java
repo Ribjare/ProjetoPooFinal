@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Misc.Room;
 import java.io.Serializable;
+import java.util.Iterator;
 
 /**
  * Cria um módulo de luminosidade que coordena o sensores associados e regula a
@@ -52,7 +53,8 @@ public class LightModule implements Serializable{
 
     //maneira manual
     public void setLightManual(int intensity, Room r) {
-        for (Lamp l : lamps) {
+        for (Iterator<Lamp> it = lamps.iterator(); it.hasNext();) {
+            Lamp l = it.next();
             if (l.getRoom().equals(r)) {
                 l.changeLigth(intensity);
                 return;
