@@ -6,13 +6,14 @@
 package Temperature;
 
 import Misc.Room;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Adriana
  */
-public class TemperatureModule {
+public class TemperatureModule implements Serializable{
 
     //private int roomTemperature;
     private ArrayList<TemperatureSensor> sensors;
@@ -74,42 +75,38 @@ public class TemperatureModule {
 //    public void s
     public void act() {
 
-        for (TemperatureSensor ts : sensors) {
-
-            if (ts.isON()) {
-
-                System.out.println("Temperature Sensor is on.\n");
-                System.out.println("Temperature: " + ts.getTemperature() + "ºC\n");
-
-                for (AirConditioner ac : ac) {
+        sensors.stream().filter((ts) -> (ts.isON())).map((ts) -> {
+            System.out.println("Temperature Sensor is on.\n");
+            return ts;
+        }).map((ts) -> {
+            System.out.println("Temperature: " + ts.getTemperature() + "ºC\n");
+            return ts;
+        }).forEachOrdered((ts) -> {
+            ac.forEach((ac) -> {
+                if (getMode()) {
                     
-                    if (getMode()) {
+                    if (ts.getTemperature() < IDEAL_TEMP - VAR || ts.getTemperature() > IDEAL_TEMP + VAR) {
                         
-                        if (ts.getTemperature() < IDEAL_TEMP - VAR || ts.getTemperature() > IDEAL_TEMP + VAR) {
-
-                            if (ts.getRoom().equals(ac.getRoom())) {
-                                if (ac.isOn()) {
-                                    System.out.println("The air conditioner is on.\n");
-                                    ac.setTemperature(IDEAL_TEMP);
-                                    System.out.println("Temperature is back to " + IDEAL_TEMP + "ºC\n");
-                                }
-                                System.out.println("The air conditioner is off.\n");
+                        if (ts.getRoom().equals(ac.getRoom())) {
+                            if (ac.isOn()) {
+                                System.out.println("The air conditioner is on.\n");
+                                ac.setTemperature(IDEAL_TEMP);
+                                System.out.println("Temperature is back to " + IDEAL_TEMP + "ºC\n");
                             }
+                            System.out.println("The air conditioner is off.\n");
                         }
                     }
-                    else{
-                        if (ts.getRoom().equals(ac.getRoom())) {
-                            setAirConditionerManual(IDEAL_TEMP, ac.getRoom());
-                            System.out.println("The air conditioner is on.\n");
-                            System.out.println("Temperature is at " + IDEAL_TEMP + "ºC\n");
-                        }
-                        
+                }
+                else{
+                    if (ts.getRoom().equals(ac.getRoom())) {
+                        setAirConditionerManual(IDEAL_TEMP, ac.getRoom());
+                        System.out.println("The air conditioner is on.\n");
+                        System.out.println("Temperature is at " + IDEAL_TEMP + "ºC\n");
                     }
 
                 }
-            }
-
-        }
+            });
+        });
     }
 
 }

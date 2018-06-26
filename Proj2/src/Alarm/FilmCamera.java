@@ -5,23 +5,23 @@
  */
 package Alarm;
 
+import Misc.Room;
+import java.io.Serializable;
+
 
 /**
- *
+ * 
  * @author Daniel
  */
-//public class FilmCamera extends Camera{
-//    
-//    
-//    
-//    
-//    public FilmCamera(){
-//        super();
-//        
-//    }
-//    
-//    @Override
-//    public void startFilming(){
-//        System.out.println("Just filmed you!");
-//    }
-//}
+public class FilmCamera extends Camera implements Serializable{
+    
+    public FilmCamera(){
+        super(Room r);
+        
+    }
+    
+    @Override
+    public void startFilming(){
+        System.out.println("Just filmed you!");
+    }
+}

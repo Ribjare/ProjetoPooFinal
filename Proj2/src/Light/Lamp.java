@@ -3,6 +3,7 @@ package Light;
 
 import Misc.Atuadores;
 import Misc.Room;
+import java.io.Serializable;
 
 /**
  *Cria uma lâmpada que irá regular a luminosidade 
@@ -10,7 +11,7 @@ import Misc.Room;
  * 
  * @author Adriana Oliveira e Daniel Alves
  */
-public class Lamp extends Atuadores{
+public class Lamp extends Atuadores implements Serializable{
     private boolean on;
     
     /**

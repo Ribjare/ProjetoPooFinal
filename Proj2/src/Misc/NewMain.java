@@ -8,6 +8,11 @@ package Misc;
 import Temperature.*;
 import Alarm.*;
 import Light.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 
@@ -23,7 +28,7 @@ public class NewMain {
      */
     public static void main(String[] args) {
 
-        WiFi wifi = new WiFi();
+       // WiFi wifi = new WiFi();
         CenterConsole c1 = new CenterConsole("BatCave", 5);
         Room r1 = new Room("Sala");
         Door d1 = new Door();
@@ -82,7 +87,7 @@ public class NewMain {
         ds.setAlarmModule(am);
         ac.setOn(true);
         ts.setON(true);
-        c1.setWifi(wifi);
+        //c1.setWifi(wifi);
         am.addCamera(c);
         
         
@@ -105,7 +110,42 @@ public class NewMain {
                 break;
         }
         
-        
+           
+      }
+    
+     public static void save() {
+        try {
+            FileOutputStream fileOut
+                    = new FileOutputStream("/tmp/CenterConsole.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(c1);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in /tmp/CenterConsole.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
-
+    
+    public static void load(){
+         try {
+         FileInputStream fileIn = new FileInputStream("/tmp/CenterConsole.ser");
+         ObjectInputStream in = new ObjectInputStream(fileIn);
+         c1 = (CenterConsole) in.readObject();
+         in.close();
+         fileIn.close();
+      } catch (IOException i) {
+         i.printStackTrace();
+         return;
+      } catch (ClassNotFoundException c) {
+         System.out.println("CenterConsole class not found");
+         c.printStackTrace();
+         return;
+     }
+    }
+    
 }
+    
+
+    
+

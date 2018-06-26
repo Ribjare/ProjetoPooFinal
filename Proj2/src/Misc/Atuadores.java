@@ -5,11 +5,13 @@
  */
 package Misc;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniel
  */
-public abstract class Atuadores {
+public abstract class Atuadores implements Serializable{
         private Room room; 
         
 

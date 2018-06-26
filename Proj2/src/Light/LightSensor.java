@@ -3,6 +3,7 @@ package Light;
 
 import Misc.Room;
 import Misc.Sensor;
+import java.io.Serializable;
 
 /**
  * Cria um sensor que verifica o nível de intencidade da luz 
@@ -10,7 +11,7 @@ import Misc.Sensor;
  * 
  * @author Adriana Oliveira e Daniel Alves
  */
-public class LightSensor extends Sensor{
+public class LightSensor extends Sensor implements Serializable{
     
     //private
     

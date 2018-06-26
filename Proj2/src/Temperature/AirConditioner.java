@@ -3,6 +3,7 @@ package Temperature;
 
 import Misc.Atuadores;
 import Misc.Room;
+import java.io.Serializable;
 
 /**
  * Cria um ar condicionado que, em modo automático, 
@@ -14,7 +15,7 @@ import Misc.Room;
  *
  * @author Adriana Oliveira e Daniel Alves
  */
-public class AirConditioner extends Atuadores{
+public class AirConditioner extends Atuadores implements Serializable{
     private boolean on; 
     private int temperature;
     private Room room; 

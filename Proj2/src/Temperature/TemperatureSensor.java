@@ -12,7 +12,8 @@ import Misc.Room;
  */
 
 import Misc.Sensor;
-public class TemperatureSensor extends Sensor{
+import java.io.Serializable;
+public class TemperatureSensor extends Sensor implements Serializable{
     private boolean ON;
     
     public TemperatureSensor(Room r){

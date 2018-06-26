@@ -10,10 +10,11 @@ import Temperature.TemperatureSensor;
 import Temperature.TemperatureModule;
 import Alarm.*;
 import Light.*;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class CenterConsole {
+public class CenterConsole implements WiFi, Serializable{
 
     private String name;
     private int numero;
@@ -216,4 +217,17 @@ public class CenterConsole {
     }
 
     //falta os gets dos modulos e 
+
+    
+    
+    
+    @Override
+    public int getCode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int generateCode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

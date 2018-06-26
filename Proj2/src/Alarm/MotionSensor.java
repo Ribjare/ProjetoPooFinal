@@ -2,13 +2,14 @@ package Alarm;
 
 import Alarm.AlarmModule;
 import Misc.Sensor;
+import java.io.Serializable;
 
 /**
  * Cria um sensor que
  *
  * @author Daniel
  */
-public class MotionSensor extends Sensor {
+public class MotionSensor extends Sensor implements Serializable{
 
     private AlarmModule alarmModule;//subtituir pelo wifi
     private boolean active;

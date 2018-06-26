@@ -4,13 +4,14 @@ package Alarm;
 import java.util.Random;
 import Misc.Atuadores;
 import Misc.Room;
+import java.io.Serializable;
 
 /**
  * Cria uma câmara que pode tirar fotografias ou filmar.
  * 
  * @author Adriana Oliveira e Daniel Alves
  */
-public class Camera extends Atuadores{
+public class Camera extends Atuadores implements Serializable{
     private boolean foto; //True-foto; False-Film
     private Room room;
     

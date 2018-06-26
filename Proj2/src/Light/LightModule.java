@@ -3,6 +3,7 @@ package Light;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Misc.Room;
+import java.io.Serializable;
 
 /**
  * Cria um módulo de luminosidade que coordena o sensores associados e regula a
@@ -10,7 +11,7 @@ import Misc.Room;
  *
  * @author Adriana Oliveira e Daniel Alves
  */
-public class LightModule {
+public class LightModule implements Serializable{
 
     private ArrayList<Lamp> lamps;
     private ArrayList<LightSensor> lightSensors;
@@ -60,9 +61,9 @@ public class LightModule {
     }
 
     public void setAllLightsManual(int intensity) {
-        for (Lamp l : lamps) {
+        lamps.forEach((l) -> {
             l.changeLigth(intensity);
-        }
+        });
     }
     ///
 

@@ -3,6 +3,7 @@ package Alarm;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Misc.Room;
+import java.io.Serializable;
 
 /*
  * Cria um módulo de alarme que coordena 
@@ -11,7 +12,7 @@ import Misc.Room;
  *
  *@author Adriana Oliveira e Daniel Alves
  */
-public class AlarmModule {
+public class AlarmModule implements Serializable{
 
     private ArrayList<DoorSensor> doorSensors;
     private ArrayList<MotionSensor> motionSensors;

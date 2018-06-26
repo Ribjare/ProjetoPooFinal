@@ -6,13 +6,14 @@
 package Misc;
 
 import Alarm.Door;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Daniel
  */
-public class Room {
+public class Room implements Serializable{
 
     private double temperature;
     private int light;

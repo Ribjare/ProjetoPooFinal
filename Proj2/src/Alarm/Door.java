@@ -1,12 +1,14 @@
 
 package Alarm;
 
+import java.io.Serializable;
+
 /**
  * Cria uma porta para a divisão, que poderá estar aberta ou fechada.
  * 
  * @author Adriana Oliveira e Daniel Alves
  */
-public class Door {
+public class Door implements Serializable{
     private boolean open;
     
     /**

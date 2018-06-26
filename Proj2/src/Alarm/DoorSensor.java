@@ -3,6 +3,7 @@ package Alarm;
 import Alarm.AlarmModule;
 import Misc.Room;
 import Misc.Sensor;
+import java.io.Serializable;
 
 /**
  * Cria um sensor de porta que verifica se a porta se encontra aberta ou
@@ -10,7 +11,7 @@ import Misc.Sensor;
  *
  * @author Adriana oliveira e Daniel Alves
  */
-public class DoorSensor extends Sensor {
+public class DoorSensor extends Sensor implements Serializable{
 
     
     private Door door;

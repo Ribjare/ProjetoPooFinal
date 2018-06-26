@@ -5,11 +5,13 @@
  */
 package Misc;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniel
  */
-public abstract class Sensor {
+public abstract class Sensor implements Serializable{
     private Room room;
 
     public Sensor(){

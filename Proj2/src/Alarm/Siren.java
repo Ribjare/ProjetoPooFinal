@@ -5,18 +5,21 @@
  */
 package Alarm;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniel
  */
-public class Siren {
+public class Siren implements Serializable{
     
     private boolean active;
     private int volume;
+    private final int DEFAULT_VOLUME=5;
     
     public Siren(){
         active=false;
-        volume= 5;
+        volume= DEFAULT_VOLUME;
         
     }
     

@@ -11,17 +11,10 @@ import java.util.UUID;
  *
  * @author Adriana
  */
-public class WiFi {
+public interface WiFi {
 
-    //private int id;
-    private boolean connected;
-
-    public WiFi() {
-        connected = true;
-    }
+  public int getCode();
   
-  public boolean isConnected() {
-      return connected;
-  }
+  public int generateCode();
   
 }
