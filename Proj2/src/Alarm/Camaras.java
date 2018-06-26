@@ -1,17 +1,20 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Alarm;
 
-import java.util.Random;
 import Misc.Atuadores;
 import Misc.Room;
 import java.io.Serializable;
+import java.util.Random;
 
 /**
- * Cria uma câmara que pode tirar fotografias ou filmar.
- * 
- * @author Adriana Oliveira e Daniel Alves
+ *
+ * @author Adriana
  */
-public class Camera extends Atuadores implements Serializable{
+public class  Camaras extends Atuadores implements Serializable {
     private boolean foto; //True-foto; False-Film
     private Room room;
     
@@ -21,7 +24,7 @@ public class Camera extends Atuadores implements Serializable{
      * 
      * @param r - Room que representa a referência da divisão
      */
-    public Camera(Room r){
+    public Camaras(Room r){
         foto = false;
         room = r;
     }
@@ -41,33 +44,21 @@ public class Camera extends Atuadores implements Serializable{
      * 
      * @return room - Room que representa essa referência
      */
-    @Override
     public Room getRoom() {
         return room;
     }
-    /**
-     * Método que gera aletoriamente a câmara a ser utilizada
-     */
-    public void randomCamera() {
-        Random rand = new Random();
-        int i = rand.nextInt((2 - 1) + 1) + 1;
-        if(i == 1)
-            takePicture();
-        else
-            startFilming();
-    }
     
     /**
-     * Método que devolve uma mensagem que avisa que foi tirada uma fotografia.
+     * Método que tira uma foto ou faz um video
      */
-    public void takePicture(){
-        System.out.println("Took a picture!\n");
-    }
-    
-    /**
-     * Método que devolve uma mensagem que avisa que foi feito um video.
-     */
-    public void startFilming(){
-        System.out.println("Just filmed you!\n");
+    public void action(){
+        if(isFoto()){
+            PhotoCamera pc = new PhotoCamera(room);
+            pc.takePicture();
+        }
+        else{
+            FilmCamera fc = new FilmCamera(room);
+            fc.startFilming();
+        }
     }
 }

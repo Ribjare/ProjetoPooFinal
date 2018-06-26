@@ -16,7 +16,7 @@ public class AlarmModule implements Serializable{
 
     private ArrayList<DoorSensor> doorSensors;
     private ArrayList<MotionSensor> motionSensors;
-    private ArrayList<Camera> cameras;
+    private ArrayList<PhotoCamera> cameras;
     private Siren siren;
     private String pin;
     private boolean on;
@@ -60,9 +60,9 @@ public class AlarmModule implements Serializable{
     /**
      * Método seletor que retorna uma lista de câmaras.
      * 
-     * @return doorSensors - ArrayList de Camera que representa essa lista
+     * @return doorSensors - ArrayList de PhotoCamera que representa essa lista
      */
-    public ArrayList<Camera> getCameras() {
+    public ArrayList<PhotoCamera> getCameras() {
         return cameras;
     }
 
@@ -142,7 +142,7 @@ public class AlarmModule implements Serializable{
      *
      * @param c - representa a câmara a ser adicionada
      */
-    public void addCamera(Camera c) {
+    public void addCamera(PhotoCamera c) {
         cameras.add(c);
     }
     
@@ -169,11 +169,12 @@ public class AlarmModule implements Serializable{
             System.out.println("PIN is incorrect.");
             siren.activate();
             System.out.println("Room is being robbed, turning on the siren!");//hahahahaah
-            for (Camera c : cameras) {
+            for (Camaras c : cameras) {
                 if (c.getRoom().equals(room)) {
                     System.out.println("Camera activated:\n");
-                    c.randomCamera();
+                    c.action();
                     return;
+                    
                 }
             }
         }
@@ -202,9 +203,9 @@ public class AlarmModule implements Serializable{
     /**
      * Método seletor que devolve uma lista de câmaras.
      *
-     * @return doorSensor - o ArrayList de Camera que será devolvido.
+     * @return doorSensor - o ArrayList de PhotoCamera que será devolvido.
      */
-    public ArrayList<Camera> getCamera() {
+    public ArrayList<PhotoCamera> getCamera() {
         return cameras;
     }
 

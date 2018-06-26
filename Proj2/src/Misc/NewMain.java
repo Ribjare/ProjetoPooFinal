@@ -29,7 +29,7 @@ public class NewMain {
     public static void main(String[] args) {
 
        // WiFi wifi = new WiFi();
-        CenterConsole c1 = new CenterConsole("BatCave", 5);
+        CenterConsole cl = new CenterConsole("BatCave", 5);
         Room r1 = new Room("Sala");
         Door d1 = new Door();
         
@@ -43,7 +43,7 @@ public class NewMain {
         LightSensor ls = new LightSensor(r1);
         Lamp l = new Lamp(r1);
         LightModule lm = new LightModule();
-        Camera c = new Camera(r1);
+        PhotoCamera c = new PhotoCamera(r1);
         DoorSensor ds = new DoorSensor(r1);
         
         
@@ -54,12 +54,12 @@ public class NewMain {
         r1.setTemperature(17);
         
         
-        c1.setTemperatureModule(tm);
-        c1.addSensors(ts);
+        cl.setTemperatureModule(tm);
+        cl.addSensors(ts);
         
         ts.setON(true);
         
-        c1.addAirConditioner(ac);
+        cl.addAirConditioner(ac);
         
 //        ac.setON(true);
 //        
@@ -67,9 +67,9 @@ public class NewMain {
         /////////Testar Luminosidade////////
         r1.setLight(40);
         
-        c1.setLightModule(lm);
-        c1.addLamp(l);
-        c1.addSensor(ls);
+        cl.setLightModule(lm);
+        cl.addLamp(l);
+        cl.addSensor(ls);
 //        
         
 //        lm.act();
@@ -91,17 +91,17 @@ public class NewMain {
         am.addCamera(c);
         
         
-        c1.setAlarmModule(am);
+        cl.setAlarmModule(am);
        
         Scanner scan = new Scanner(System.in);
         System.out.println("Would you like manual or automatic?\n1-Manual\n2-Automatic");
         int i = scan.nextInt();
         switch (i) {
             case 2:
-                c1.automatedAct();
+                cl.automatedAct();
                 break;
             case 1:
-                c1.manualAct();
+                cl.manualAct();
                 break;
             default:
                 System.out.println("Choice not possible.\n");
@@ -114,11 +114,11 @@ public class NewMain {
       }
     
      public static void save() {
+         CenterConsole cl = new CenterConsole("BatCave", 5);
         try {
-            FileOutputStream fileOut
-                    = new FileOutputStream("/tmp/CenterConsole.ser");
+            FileOutputStream fileOut = new FileOutputStream("/tmp/CenterConsole.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(c1);
+            out.writeObject(cl);
             out.close();
             fileOut.close();
             System.out.printf("Serialized data is saved in /tmp/CenterConsole.ser");
@@ -128,10 +128,11 @@ public class NewMain {
     }
     
     public static void load(){
+        CenterConsole cl = new CenterConsole("BatCave", 5);
          try {
          FileInputStream fileIn = new FileInputStream("/tmp/CenterConsole.ser");
          ObjectInputStream in = new ObjectInputStream(fileIn);
-         c1 = (CenterConsole) in.readObject();
+         cl = (CenterConsole) in.readObject();
          in.close();
          fileIn.close();
       } catch (IOException i) {

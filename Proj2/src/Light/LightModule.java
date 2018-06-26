@@ -102,7 +102,7 @@ public class LightModule implements Serializable{
                 }
             } else {
                 Scanner scan = new Scanner(System.in);
-                System.out.println("Ligh: ");
+                System.out.println("Light: ");
                 int t = scan.nextInt();
                 
                 setAllLightsManual(t);

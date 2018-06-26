@@ -5,16 +5,18 @@
  */
 package Misc;
 
-import java.util.UUID;
-
 /**
  *
  * @author Adriana
  */
 public interface WiFi {
 
-  public int getCode();
-  
-  public int generateCode();
-  
+    public void connect();
+    
+    public void disconnect();
+
+//    public int getCode();
+//
+//    public int generateCode();
+
 }

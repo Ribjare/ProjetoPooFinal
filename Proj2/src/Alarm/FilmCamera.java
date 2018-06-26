@@ -13,15 +13,21 @@ import java.io.Serializable;
  * 
  * @author Daniel
  */
-public class FilmCamera extends Camera implements Serializable{
+public class FilmCamera extends Camaras implements Serializable{
     
-    public FilmCamera(){
-        super(Room r);
-        
+    private Room room;
+    
+    public FilmCamera(Room r){
+        super(r);
+        room = r;
     }
     
-    @Override
+    /**
+     * Método que devolve uma mensagem que avisa que foi feito um video.
+     */
     public void startFilming(){
-        System.out.println("Just filmed you!");
+        System.out.println("Just filmed you!\n");
     }
+    
+    
 }

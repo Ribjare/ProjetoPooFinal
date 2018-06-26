@@ -23,7 +23,7 @@ public class CenterConsole implements WiFi, Serializable{
     private LightModule lightModule;
     private AlarmModule alarmModule;
     private TemperatureModule temperatureModule;
-    private WiFi wifi;
+    private boolean connected;
 
     private String info;
 
@@ -44,10 +44,14 @@ public class CenterConsole implements WiFi, Serializable{
         id = 1;
     }
 
-    public void setWifi(WiFi wifi) {
-        this.wifi = wifi;
+    public void connect() {
+        connected = true;
     }
 
+    public void disconnect(){
+        connected = false;
+    }
+    
     public void setLightModule(LightModule lm) {
         this.lightModule = lm;
     }
@@ -74,7 +78,7 @@ public class CenterConsole implements WiFi, Serializable{
 
     public void automatedAct() {
         //alarme
-        if (wifi.isConnected()) {
+        if (connected) {
             System.out.println("==========Alarms==========\n");
             Random rand = new Random();
             int i = rand.nextInt((2 - 1) + 1) + 1;
@@ -101,7 +105,7 @@ public class CenterConsole implements WiFi, Serializable{
     public void manualAct() {
         Scanner scan = new Scanner(System.in);
         //alarme
-        if (wifi.isConnected()) {
+        if (connected) {
             System.out.println("==========Alarms==========\n");
             System.out.println("Activate motion sensor?\n1-Yes\n2-No\n");
             int i = scan.nextInt();
@@ -208,7 +212,7 @@ public class CenterConsole implements WiFi, Serializable{
         alarmModule.addMotionSensor(s);
     }
 
-    public void addCamera(Camera c) {
+    public void addCamera(PhotoCamera c) {
         alarmModule.addCamera(c);
     }
 
@@ -221,13 +225,13 @@ public class CenterConsole implements WiFi, Serializable{
     
     
     
-    @Override
-    public int getCode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int generateCode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    @Override
+//    public int getCode() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public int generateCode() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }
